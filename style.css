@@ -3,13 +3,31 @@ body {
   text-align: center;
   margin: 0;
   padding: 0;
-  background: #2e8b57;
+  background: linear-gradient(45deg, #ff5f6d, #ffc371, #24c6dc);
+  background-size: 600% 600%;
+  animation: gradient 16s ease infinite;
   color: #fff;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+#opening-image {
+  width: 300px;
+  max-width: 80%;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
 }
 
 h1 {
   margin: 0;
   padding: 1rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 #game {
@@ -38,6 +56,12 @@ h1 {
   color: #000;
   background: #fff;
   cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.1);
 }
 
 #discard .card {
@@ -56,4 +80,27 @@ h1 {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   margin-top: 1rem;
+  background: linear-gradient(45deg, #ff0084, #ffbf00);
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+#draw-button:hover {
+  transform: scale(1.05);
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
