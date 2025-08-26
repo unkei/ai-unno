@@ -70,6 +70,7 @@ document.getElementById('player-hand').addEventListener('click', e => {
     render();
     if (playerHand.length === 0) {
       updateStatus('You win!');
+      showGameOverEffect(true);
       return;
     }
     setTimeout(aiTurn, 500);
@@ -81,6 +82,10 @@ document.getElementById('draw-button').addEventListener('click', () => {
   playerHand.push(deck.pop());
   render();
   setTimeout(aiTurn, 500);
+});
+
+document.getElementById('restart-button').addEventListener('click', () => {
+  resetGame();
 });
 
 function aiTurn() {
@@ -99,6 +104,7 @@ function aiTurn() {
   render();
   if (aiHand.length === 0) {
     updateStatus('AI wins!');
+    showGameOverEffect(false);
     return;
   }
   updateStatus('Your turn');
@@ -112,6 +118,57 @@ function reshuffle() {
 
 function updateStatus(msg) {
   document.getElementById('status').textContent = msg;
+}
+
+function createConfetti() {
+  const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff'];
+  
+  for (let i = 0; i < 50; i++) {
+    const confetti = document.createElement('div');
+    confetti.classList.add('confetti');
+    confetti.style.left = Math.random() * 100 + 'vw';
+    confetti.style.top = '-20px';
+    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.animationDelay = Math.random() * 3 + 's';
+    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    confetti.style.animation = 'confetti-fall ' + confetti.style.animationDuration + ' ease-out ' + confetti.style.animationDelay + ' forwards';
+    document.body.appendChild(confetti);
+    
+    setTimeout(() => {
+      confetti.remove();
+    }, 5000);
+  }
+}
+
+function showGameOverEffect(playerWon) {
+  const drawButton = document.getElementById('draw-button');
+  const restartButton = document.getElementById('restart-button');
+  const overlay = document.getElementById('game-over-overlay');
+  
+  drawButton.style.display = 'none';
+  restartButton.style.display = 'block';
+  
+  if (playerWon) {
+    createConfetti();
+  } else {
+    overlay.classList.add('show');
+    document.getElementById('game').classList.add('shake');
+    setTimeout(() => {
+      document.getElementById('game').classList.remove('shake');
+    }, 500);
+  }
+}
+
+function resetGame() {
+  const drawButton = document.getElementById('draw-button');
+  const restartButton = document.getElementById('restart-button');
+  const overlay = document.getElementById('game-over-overlay');
+  
+  drawButton.style.display = 'block';
+  restartButton.style.display = 'none';
+  overlay.classList.remove('show');
+  
+  init();
 }
 
 function showSplash() {
