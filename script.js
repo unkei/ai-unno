@@ -118,12 +118,19 @@ function showSplash() {
   setTimeout(() => {
     splash.style.transform = 'translate(-50%, -50%) scale(1.2)';
     splash.style.opacity = '0';
+
     setTimeout(() => {
-      splash.style.display = 'none';
       positionLogo();
       logo.style.display = 'block';
+      // Force reflow to ensure display change is applied before opacity change
+      logo.offsetHeight;
+      logo.style.opacity = '1';
+    }, 50);
+
+    setTimeout(() => {
+      splash.style.display = 'none';
     }, 300);
-  }, 1000);
+  }, 500);
 
   window.addEventListener('resize', positionLogo);
 }
