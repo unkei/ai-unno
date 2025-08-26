@@ -16,12 +16,24 @@ header {
   padding: 1rem;
 }
 
-#opening-image {
-  width: 300px;
-  max-width: 80%;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
-  margin-bottom: 1rem;
+#splash {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+#corner-logo {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: none;
+  z-index: 1000;
+  pointer-events: none;
 }
 
 h1 {
