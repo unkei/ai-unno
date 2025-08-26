@@ -78,6 +78,22 @@ h1 {
   transition: transform 0.2s;
 }
 
+.card-back {
+  background: linear-gradient(45deg, #1e3c72, #2a5298);
+  color: #fff;
+  font-weight: bold;
+  cursor: default;
+}
+
+#ai-count {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
 .card:hover {
   transform: scale(1.1);
 }

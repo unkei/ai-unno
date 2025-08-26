@@ -42,6 +42,15 @@ function cardToHTML(card, index, clickable = true) {
 function render() {
   const playerDiv = document.getElementById('player-hand');
   playerDiv.innerHTML = playerHand.map((c, i) => cardToHTML(c, i)).join('');
+  
+  const aiDiv = document.getElementById('ai-hand');
+  const aiCountDiv = document.getElementById('ai-count');
+  aiCountDiv.textContent = `AI: ${aiHand.length} cards`;
+  const aiCardsHTML = aiHand.map((_, i) => 
+    `<div class="card card-back" data-index="${i}">UNNO</div>`
+  ).join('');
+  aiDiv.innerHTML = `<div id="ai-count">AI: ${aiHand.length} cards</div>` + aiCardsHTML;
+  
   const discardDiv = document.getElementById('discard');
   discardDiv.innerHTML = cardToHTML(discard[discard.length - 1], 0, false);
 }
