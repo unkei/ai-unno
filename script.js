@@ -19,6 +19,7 @@ function shuffle(array) {
 }
 
 let deck, playerHand, aiHand, discard;
+let startTime, timerInterval;
 
 function init() {
   deck = createDeck();
@@ -31,6 +32,7 @@ function init() {
   discard = [deck.pop()];
   render();
   updateStatus('Your turn');
+  startTimer();
 }
 
 function cardToHTML(card, index, clickable = true) {
@@ -120,6 +122,19 @@ function updateStatus(msg) {
   document.getElementById('status').textContent = msg;
 }
 
+function startTimer() {
+  startTime = Date.now();
+  timerInterval = setInterval(() => {
+    const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
+    document.getElementById('timer').textContent = `${elapsed}s`;
+  }, 100);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+  return (Date.now() - startTime) / 1000;
+}
+
 function createConfetti() {
   const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff'];
   
@@ -144,30 +159,40 @@ function showGameOverEffect(playerWon) {
   const drawButton = document.getElementById('draw-button');
   const restartButton = document.getElementById('restart-button');
   const overlay = document.getElementById('game-over-overlay');
-  
+
   drawButton.style.display = 'none';
   restartButton.style.display = 'block';
-  
+  const time = stopTimer();
+  let best = parseFloat(localStorage.getItem('bestTime'));
   if (playerWon) {
+    if (!best || time < best) {
+      best = time;
+      localStorage.setItem('bestTime', best);
+    }
+    overlay.style.background = 'rgba(0, 0, 0, 0)';
     createConfetti();
   } else {
-    overlay.classList.add('show');
+    overlay.style.background = 'rgba(0, 0, 0, 0.9)';
     document.getElementById('game').classList.add('shake');
     setTimeout(() => {
       document.getElementById('game').classList.remove('shake');
     }, 500);
   }
+  const bestDisplay = best ? Number(best).toFixed(2) : '--';
+  overlay.innerHTML = `<div>${playerWon ? 'You Win!' : 'You Lose!'}</div><div class="time">Time: ${time.toFixed(2)}s<br>Best: ${bestDisplay}s</div>`;
+  overlay.classList.add('show');
 }
 
 function resetGame() {
   const drawButton = document.getElementById('draw-button');
   const restartButton = document.getElementById('restart-button');
   const overlay = document.getElementById('game-over-overlay');
-  
+
   drawButton.style.display = 'block';
   restartButton.style.display = 'none';
   overlay.classList.remove('show');
-  
+  overlay.innerHTML = '';
+  document.getElementById('timer').textContent = '0.00s';
   init();
 }
 
