@@ -21,6 +21,9 @@ header {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
   opacity: 1;
   transition: transform 0.3s ease, opacity 0.3s ease;
   z-index: 1000;
@@ -34,6 +37,9 @@ header {
   display: none;
   z-index: 1000;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  object-fit: contain;
 }
 
 h1 {
@@ -70,6 +76,22 @@ h1 {
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s;
+}
+
+.card-back {
+  background: linear-gradient(45deg, #1e3c72, #2a5298);
+  color: #fff;
+  font-weight: bold;
+  cursor: default;
+}
+
+#ai-count {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .card:hover {
