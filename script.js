@@ -105,4 +105,28 @@ function updateStatus(msg) {
   document.getElementById('status').textContent = msg;
 }
 
+function showSplash() {
+  const splash = document.getElementById('splash');
+  const logo = document.getElementById('corner-logo');
+
+  function positionLogo() {
+    const size = Math.min(window.innerWidth, window.innerHeight) * 0.25;
+    logo.style.width = size + 'px';
+    logo.style.height = size + 'px';
+  }
+
+  setTimeout(() => {
+    splash.style.transform = 'translate(-50%, -50%) scale(1.2)';
+    splash.style.opacity = '0';
+    setTimeout(() => {
+      splash.style.display = 'none';
+      positionLogo();
+      logo.style.display = 'block';
+    }, 300);
+  }, 1000);
+
+  window.addEventListener('resize', positionLogo);
+}
+
+showSplash();
 init();
