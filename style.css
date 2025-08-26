@@ -94,6 +94,13 @@ h1 {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+#timer {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
 .card:hover {
   transform: scale(1.1);
 }
@@ -166,14 +173,26 @@ h1 {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 500;
+  z-index: 1001;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 1s ease;
+  transition: opacity 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 3rem;
+  text-align: center;
 }
 
 .game-over-overlay.show {
   opacity: 1;
+}
+
+.game-over-overlay .time {
+  font-size: 1.5rem;
+  margin-top: 1rem;
 }
 
 @keyframes shake {
