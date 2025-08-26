@@ -7,6 +7,11 @@ body {
   background-size: 600% 600%;
   animation: gradient 16s ease infinite;
   color: #fff;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 header {
@@ -173,7 +178,7 @@ h1 {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 1001;
+  z-index: 1000;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -208,7 +213,7 @@ h1 {
 #restart-button {
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  margin-top: 1rem;
+  margin-top: 5rem;
   background: linear-gradient(45deg, #28a745, #20c997);
   border: none;
   color: #fff;
@@ -217,6 +222,7 @@ h1 {
   cursor: pointer;
   transition: transform 0.2s;
   display: none;
+  z-index: 1001;
 }
 
 #restart-button:hover {
