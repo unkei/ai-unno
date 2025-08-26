@@ -123,6 +123,9 @@ function updateStatus(msg) {
 }
 
 function startTimer() {
+  if (timerInterval) {
+    clearInterval(timerInterval);
+  }
   startTime = Date.now();
   timerInterval = setInterval(() => {
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
@@ -193,6 +196,12 @@ function resetGame() {
   overlay.classList.remove('show');
   overlay.innerHTML = '';
   document.getElementById('timer').textContent = '0.00s';
+  
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+  
   init();
 }
 
