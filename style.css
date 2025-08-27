@@ -213,7 +213,10 @@ h1 {
 #restart-button {
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  margin-top: 5rem;
+  position: fixed;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
   background: linear-gradient(45deg, #28a745, #20c997);
   border: none;
   color: #fff;
@@ -226,5 +229,5 @@ h1 {
 }
 
 #restart-button:hover {
-  transform: scale(1.05);
+  transform: translateX(-50%) scale(1.05);
 }
