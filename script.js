@@ -229,6 +229,7 @@ function showSplash() {
 
     setTimeout(() => {
       splash.style.display = 'none';
+      init(); // Start game after splash screen disappears
     }, 300);
   }, 500);
 
@@ -236,4 +237,3 @@ function showSplash() {
 }
 
 showSplash();
-init();
