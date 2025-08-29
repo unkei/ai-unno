@@ -48,8 +48,8 @@ function render() {
   const aiDiv = document.getElementById('ai-hand');
   const aiCountDiv = document.getElementById('ai-count');
   aiCountDiv.textContent = `AI: ${aiHand.length} cards`;
-  const aiCardsHTML = aiHand.map((_, i) => 
-    `<div class="card card-back" data-index="${i}">UNNO</div>`
+  const aiCardsHTML = aiHand.map((_, i) =>
+    `<div class="card card-back" data-index="${i}"><span class="card-back-text">UNNO</span></div>`
   ).join('');
   aiDiv.innerHTML = `<div id="ai-count">AI: ${aiHand.length} cards</div>` + aiCardsHTML;
   
