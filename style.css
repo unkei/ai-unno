@@ -85,9 +85,21 @@ h1 {
 
 .card-back {
   background: linear-gradient(45deg, #1e3c72, #2a5298);
-  color: #fff;
   font-weight: bold;
   cursor: default;
+}
+
+.card-back-text {
+  color: #ff0;
+  -webkit-text-stroke: 1px #fff;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+  transform: rotate(12deg);
+  display: inline-block;
+}
+
+.card-back:hover .card-back-text {
+  transform: rotate(12deg) scale(1.1);
 }
 
 #ai-count {
@@ -119,6 +131,9 @@ h1 {
     width: 40px;
     height: 60px;
     font-size: 16px;
+  }
+  .card-back-text {
+    font-size: 10px;
   }
 }
 
